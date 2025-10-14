@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh; /* para que el footer quede abajo */
+}
+
+main {
+  flex: 1; /* ocupa el espacio disponible entre header y footer */
+  background-color: #f1e3f3; /* color de fondo general */
+}
+

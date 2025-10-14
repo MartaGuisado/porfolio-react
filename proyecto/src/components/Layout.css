@@ -1,0 +1,25 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* html y body ocupan toda la pantalla */
+html, body {
+  height: 100%;
+}
+
+/* Contenedor principal de la app */
+.app-container {
+  display: flex;
+  flex-direction: column; /* Header → Main → Footer */
+  min-height: 100vh;      /* Ocupa toda la altura de la ventana */
+}
+
+/* Main ocupa todo el espacio disponible */
+main {
+  flex: 1;                /* Empuja el footer hacia abajo */
+  background-color: #f1e3f3;
+  padding: 1.5em;
+}
