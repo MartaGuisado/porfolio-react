@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import Contacto from "../pages/Contacto";
 
 function Header() {
   return (
@@ -10,7 +11,7 @@ function Header() {
         <Link to="/">Inicio</Link>
         <Link to="/curriculum">Currículum</Link>
         <Link to="/porfolio">Porfolio</Link>
-        <Link to="/aficiones">Aficiones</Link>
+        <Link to="/contacto">Contacto</Link>
       </nav>
     </header>
   );

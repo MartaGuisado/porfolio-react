@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import Contacto from "../pages/Contacto";
 import { Outlet } from "react-router-dom";
 import "./Layout.css"; // Nuevo CSS para el layout
 

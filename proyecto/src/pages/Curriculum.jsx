@@ -2,62 +2,63 @@ import React, { useState } from "react";
 import "./Curriculum.css";
 
 function Curriculum() {
-  const [modal, setModal] = useState({ isOpen: false, content: "" });
+  const [openModal, setOpenModal] = useState(null);
 
   const sections = [
     {
+      id: "formacion",
       title: "Formación",
-      content: `Grado en Publicidad y Relaciones Públicas.
-Master en Diseño Web y UX/UI.`,
+      content: "Aquí va toda tu formación académica..."
     },
     {
-      title: "Formación complementaria",
-      content: `Cursos de Photoshop, Illustrator, InDesign, Canva.
-Certificaciones en Meta Ads y Metricool.`,
+      id: "complementaria",
+      title: "Formación Complementaria",
+      content: "Cursos, certificaciones y talleres..."
     },
     {
+      id: "softskills",
       title: "Soft Skills",
-      content: `Creatividad, comunicación efectiva, trabajo en equipo,
-resiliencia y capacidad de adaptación.`,
+      content: "Comunicación, liderazgo, trabajo en equipo..."
     },
     {
-      title: "Competencias clave",
-      content: `Diseño gráfico, desarrollo web (HTML, CSS, React),
-estrategia digital y gestión de proyectos.`,
-    },
+      id: "competencias",
+      title: "Competencias Clave",
+      content: "Diseño web, publicidad, análisis de datos..."
+    }
   ];
-
-  const openModal = (content) => setModal({ isOpen: true, content });
-  const closeModal = () => setModal({ isOpen: false, content: "" });
 
   return (
     <div className="curriculum-section">
-      <h2>Currículum</h2>
+      <h2>Mente inquieta, en constante beta-test. Busco siempre la mejor versión de mí para aplicar soluciones innovadoras.</h2>
       <div className="curriculum-buttons">
-        {sections.map((section, idx) => (
+        {sections.map((sec) => (
           <button
-            key={idx}
+            key={sec.id}
             className="curriculum-btn"
-            onClick={() => openModal(section.content)}
+            onClick={() => setOpenModal(sec.id)}
           >
-            {section.title}
+            {sec.title}
           </button>
         ))}
       </div>
 
-      {modal.isOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
+      {sections.map((sec) => (
+        openModal === sec.id && (
           <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
+            key={sec.id}
+            className="modal-overlay"
+            onClick={() => setOpenModal(null)}
           >
-            <button className="modal-close" onClick={closeModal}>
-              ✖
-            </button>
-            <p>{modal.content}</p>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h3>{sec.title}</h3>
+              <p>{sec.content}</p>
+              <button className="close-btn" onClick={() => setOpenModal(null)}>
+                Cerrar
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      ))}
     </div>
   );
 }
