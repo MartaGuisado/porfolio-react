@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./Home.css";
 import miFoto from "../assets/mi-foto.png";
 import ReactIcon from "../assets/icons/react.png";
@@ -32,7 +33,7 @@ function Home() {
           <div className="home-content">
             <img src={miFoto} alt="Marta Guisado" className="home-photo" />
             <div className="home-text">
-              <h1>Marta Guisado Simón ✅</h1>
+              <h1>Marta Guisado Simón </h1>
               <p>
                 Comunicadora creativa con formación en publicidad, diseño y desarrollo web.
                 Mi pasión por el diseño y la tecnología me impulsa a crear proyectos que
@@ -40,10 +41,10 @@ function Home() {
               </p>
               <div className="home-buttons">
                 <a href="https://github.com/" target="_blank" rel="noreferrer" className="btn github-btn">
-                  <span className="icon">🐙</span> GitHub
+                  <FaGithub className="icon" /> GitHub
                 </a>
                 <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="btn linkedin-btn">
-                  <span className="icon">💼</span> LinkedIn
+                  <FaLinkedin className="icon" /> LinkedIn
                 </a>
               </div>
             </div>
@@ -59,8 +60,8 @@ function Home() {
           <div className="flip-inner">
             {/* Frente */}
             <div className="card-front">
-                <div className="card-icon">💡</div>
-                 <h3>Herramientas creativas</h3>
+              <div className="card-icon">💡</div>
+              <h3>Herramientas creativas</h3>
               <p>
                 Diseño y desarrollo web con equilibrio entre estética, usabilidad y creatividad.
                 Me adapto a nuevas herramientas y tendencias con rapidez y curiosidad.
@@ -70,18 +71,17 @@ function Home() {
             {/* Reverso */}
             <div className="card-back">
               <h3>Habilidades destacadas</h3>
-                <div className="icon-cloud">
-                  <img src={ReactIcon} alt="React" className="tool-icon" />
-                  <img src={HtmlIcon} alt="HTML5" className="tool-icon" />
-                  <img src={CssIcon} alt="CSS3" className="tool-icon" />
-                  <img src={IllustratorIcon} alt="Illustrator" className="tool-icon" />
-                  <img src={InDesignIcon} alt="InDesign" className="tool-icon" />
-                  <img src={CanvaIcon} alt="Canva" className="tool-icon" />
-                  <img src={MetaIcon} alt="Meta" className="tool-icon" />
-                  <img src={MetricoolIcon} alt="Metricool" className="tool-icon" />
-                  <img src={PhotoshopIcon} alt="Photoshop" className="tool-icon" />
-                </div>
-             {/*} <p>Herramientas que potencian mi creatividad y precisión visual.</p>*/}           
+              <div className="icon-cloud">
+                <img src={ReactIcon} alt="React" className="tool-icon" />
+                <img src={HtmlIcon} alt="HTML5" className="tool-icon" />
+                <img src={CssIcon} alt="CSS3" className="tool-icon" />
+                <img src={IllustratorIcon} alt="Illustrator" className="tool-icon" />
+                <img src={InDesignIcon} alt="InDesign" className="tool-icon" />
+                <img src={CanvaIcon} alt="Canva" className="tool-icon" />
+                <img src={MetaIcon} alt="Meta" className="tool-icon" />
+                <img src={MetricoolIcon} alt="Metricool" className="tool-icon" />
+                <img src={PhotoshopIcon} alt="Photoshop" className="tool-icon" />
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ function Home() {
               <div className="card-icon">❤️</div>
               <h3>Valores personales</h3>
               <p>
-                Creatividad, implicación, resiliencia y pasión por lo que hago.
+                Lo que me hace diferente a la IA: creatividad, implicación, resiliencia y pasión por lo que hago.
               </p>
             </div>
             <div className="card-back">
