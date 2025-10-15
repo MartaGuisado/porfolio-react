@@ -1,36 +1,27 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* --- ESTRUCTURA BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .curriculum-section {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  padding: 3em 2em;           /* antes 4em → sube el contenido */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 3em 2em;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 🔹 empieza más arriba */
   align-items: center;
   min-height: 80vh;
 }
 
-
 .curriculum-section h2 {
-  font-size: 1.6em;           /* ligeramente más grande */
+  font-size: 1.6em;
   line-height: 1.3;
-  margin-bottom: 1em;         /* un poco más de separación del párrafo */
+  margin-bottom: 1em;
   max-width: 600px;
-  white-space: normal;
-  margin-top: 1em;            /* 🔹 empuja un poquito desde el borde superior */
-}
-
-.curriculum-section p {
-  font-size: 1.2em;
-  max-width: 600px;
-  line-height: 1.5;
-  margin-bottom: 3em;         /* más espacio antes de los botones */
+  margin-top: 1em;
 }
 
 .curriculum-buttons {
@@ -38,13 +29,13 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
-  margin-top: 3em; /* antes 1em → ahora más separación */
+  margin-top: 3em;
 }
 
 .curriculum-btn {
-  padding: 1em 2em;           /* 🔹 antes 0.8em 1.5em → un poco más grandes */
-  border-radius: 12px;        /* esquinas algo más suaves */
-  font-size: 1.05em;          /* 🔹 texto ligeramente mayor */
+  padding: 1em 2em;
+  border-radius: 12px;
+  font-size: 1.05em;
   font-weight: bold;
   background-color: #0a2463;
   color: #f1e3f3;
@@ -55,10 +46,10 @@
 
 .curriculum-btn:hover {
   background-color: #247ba0;
-  transform: scale(1.08);     /* 🔹 un poquito más de efecto al pasar el ratón */
+  transform: scale(1.08);
 }
 
-/* Modal overlay */
+/* --- MODAL --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -72,39 +63,171 @@
   z-index: 999;
 }
 
-/* Modal content */
+/* Ajustado: modal más pequeño y centrado */
 .modal-content {
   background-color: #f1e3f3;
-  padding: 1.5em 1.5em;
+  padding: 2em;
   border-radius: 25px;
   width: 70%;
-  max-height: 90vh;
+  max-width: 750px; /* antes 900px */
+  max-height: 80vh; /* antes 90vh */
   overflow-y: auto;
   position: relative;
   box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
+  animation: fadeIn 0.3s ease;
 }
 
-/* Texto: centrado y ocupa ancho disponible */
-.modal-content p {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 1em 0;
-  padding: 2em;
-  line-height: 1.6;
-  text-align: justify;
-  max-width: none;
+/* Suave aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Título con espacio debajo */
 .modal-content h3 {
   margin-bottom: 1.5em;
   font-size: 1.5em;
   text-align: center;
 }
 
-/* Botón centrado */
-.modal-content .close-btn {
+.modal-content {
+  background-color: #f1e3f3;
+  padding: 2em;
+  border-radius: 25px;
+  width: 70%;
+  max-width: 750px;
+  max-height: 90vh; /* margen de seguridad para pantallas pequeñas */
+  overflow-y: visible; /* 🔹 Se adapta al contenido (sin scroll) */
+  position: relative;
+  box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
+  animation: fadeIn 0.4s ease;
+}
+
+/* --- FORMACIONES --- */
+.formacion-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.formacion-item {
+  position: relative;
+  background: #fff;
+  padding: 1em 1.5em;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(10, 36, 99, 0.1);
+}
+
+.formacion-item:hover {
+  background: #f5f5ff;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-header h4 {
+  color: #0a2463;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+/* Icono + / - */
+.toggle-icon {
+  display: none; /* visible solo en móvil */
+  font-size: 1.5em;
+  color: #0a2463;
+  transition: transform 0.3s ease;
+}
+
+/* --- TOOLTIP ESCRITORIO (posición ajustada + animación suave) --- */
+@media (hover: hover) {
+  .formacion-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #0a2463;
+    color: #f1e3f3;
+    padding: 0.6em 1em;
+    border-radius: 10px;
+    white-space: normal;
+    width: 270px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(12%, 0); /* 🔹 Ligeramente menos desplazada a la derecha */
+    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-size: 0.9em;
+    box-shadow: 0 4px 10px rgba(10, 36, 99, 0.3);
+    z-index: 10;
+  }
+
+  /* 🔹 Por defecto (primeros elementos → tooltip justo debajo) */
+  .formacion-item:hover::after {
+    opacity: 1;
+    transform: translate(12%, -10%); /* 🔹 Antes 115% → más cerca del elemento */
+  }
+
+  /* 🔹 Últimos elementos (tooltip aparece arriba) */
+  .formacion-item:nth-last-child(-n + 2):hover::after {
+    opacity: 1;
+    transform: translate(12%, -125%); /* 🔹 Ajuste fino: más cerca y más natural */
+  }
+}
+
+/* --- EXPANSIÓN MÓVIL --- */
+@media (hover: none) {
+  .toggle-icon {
+    display: block;
+  }
+
+  .formacion-item.open {
+    background: #247ba020;
+  }
+
+  .formacion-item .detalle {
+    display: none;
+  }
+
+  .formacion-item.open .detalle {
+    display: block;
+    color: #333;
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin-top: 0.6em;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  .formacion-item.open .toggle-icon {
+    transform: rotate(180deg);
+  }
+}
+
+/* Efecto slide-down suave al expandir */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- BOTÓN CERRAR --- */
+.close-btn {
   display: inline-block;
   margin: 2em auto 0 auto;
   padding: 0.6em 1.5em;
@@ -115,16 +238,8 @@
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: auto;
 }
 
-.modal-content .close-btn:hover {
+.close-btn:hover {
   background-color: #c96c1c;
-}
-
-@media (min-width: 1024px) {
-  .modal-content {
-    width: 80%;
-    max-width: 900px; /* límite superior */
-  }
 }

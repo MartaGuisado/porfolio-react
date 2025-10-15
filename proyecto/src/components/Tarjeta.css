@@ -1,0 +1,147 @@
+/* ======== Tarjeta base ======== */
+.tarjeta-container {
+  perspective: 1000px;
+  display: inline-block;
+  margin: 2em;
+}
+
+.tarjeta {
+  width: 280px;
+  height: 360px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  cursor: pointer;
+}
+
+.tarjeta-container:hover .tarjeta {
+  transform: rotateY(180deg);
+}
+
+/* ======== Lados ======== */
+.tarjeta-front,
+.tarjeta-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  box-shadow: 0 0 20px rgba(10, 36, 99, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ======== Frente ======== */
+.tarjeta-front {
+  background-color: #0A2463;
+  color: #F1E3F3;
+}
+
+.tarjeta-front h3 {
+  font-size: 1.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ======== Reverso ======== */
+.tarjeta-back {
+  background-color: #97D8C4;
+  color: #0A2463;
+  transform: rotateY(180deg);
+  padding: 1.5em;
+}
+
+.tarjeta-back h4 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.palabras-clave {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.palabra {
+  font-weight: bold;
+  color: #0A2463;
+  background: #F1E3F3;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.palabra:hover {
+  background: #E48022;
+  color: #F1E3F3;
+  transform: scale(1.05);
+}
+
+/* ======== Modal ======== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 36, 99, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+  background-color: #F1E3F3;
+  color: #0A2463;
+  border-radius: 20px;
+  padding: 1.5em;
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
+  animation: zoomIn 0.5s ease forwards;
+}
+
+.modal-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.close-btn {
+  margin-top: 1em;
+  padding: 0.5em 1.2em;
+  border: none;
+  border-radius: 8px;
+  background-color: #E48022;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #c96c1c;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 768px) {
+  .tarjeta {
+    width: 90%;
+    height: 300px;
+  }
+}

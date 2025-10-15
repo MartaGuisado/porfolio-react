@@ -14,7 +14,8 @@
 }
 
 .contacto-page h2 {
-  color: #0a2463;
+  color: #000308;
+  font-size: 2em;
   margin-bottom: 2em;
   text-align: center;
 }
@@ -96,52 +97,74 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
-
-.modal-overlay.locked {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 36, 99, 0.85); /* Fondo más oscuro */
+  background: rgba(10, 36, 99, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
+}
+
+.modal-overlay.locked {
+  background: rgba(10, 36, 99, 0.85); /* Fondo más oscuro */
+  z-index: 9999; /* Más prioridad visual */
   pointer-events: all; /* Bloquea interacción con el fondo */
 }
 
 .success-modal {
   background-color: #f1e3f3;
-  padding: 2.5em 3em;
-  border-radius: 20px;
+  padding: 2em;
+  border-radius: 25px;
   width: 90%;
   max-width: 450px;
   text-align: center;
-  animation: fadeIn 0.5s ease;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
+  animation: zoomInFade 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .success-modal h3 {
   color: #0a2463;
-  font-size: 1.8em;
   margin-bottom: 0.6em;
 }
 
 .success-modal p {
-  color: #333;
   font-size: 1.1em;
-  line-height: 1.4;
+  color: #222;
 }
 
-@keyframes fadeIn {
-  from {
+.success-modal .close-btn {
+  margin-top: 1.5em;
+  padding: 0.6em 1.5em;
+  border: none;
+  border-radius: 8px;
+  background-color: #e48022;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.success-modal .close-btn:hover {
+  background-color: #c96c1c;
+}
+
+/* Animación del modal */
+@keyframes zoomInFade {
+  0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.92) translateY(10px);
   }
-  to {
+  60% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.02) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 

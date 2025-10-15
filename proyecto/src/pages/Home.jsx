@@ -35,9 +35,9 @@ function Home() {
             <div className="home-text">
               <h1>Marta Guisado Simón </h1>
               <p>
-                Comunicadora creativa con formación en publicidad, diseño y desarrollo web.
-                Mi pasión por el diseño y la tecnología me impulsa a crear proyectos que
-                combinan estética y funcionalidad, cuidando cada detalle del proceso.
+                Diseñadora digital con una visión global del diseño, la comunicación y la experiencia de usuario.
+Transformo ideas en soluciones visuales que inspiran, comunican y funcionan.
+Combino creatividad, técnica y sensibilidad para dar vida a proyectos que conectan marcas y personas a través de la emoción, la claridad y el propósito.
               </p>
               <div className="home-buttons">
                 <a href="https://github.com/" target="_blank" rel="noreferrer" className="btn github-btn">
