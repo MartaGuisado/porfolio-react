@@ -18,7 +18,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>© 2025 Marta Guisado Simón. Todos los derechos reservados.</p>
-      <p>Hoy es {formattedDate}</p>
+      <p>{formattedDate}</p>
     </footer>
   );
 }

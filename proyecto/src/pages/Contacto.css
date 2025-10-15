@@ -96,3 +96,57 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
+
+.modal-overlay.locked {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 36, 99, 0.85); /* Fondo más oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: all; /* Bloquea interacción con el fondo */
+}
+
+.success-modal {
+  background-color: #f1e3f3;
+  padding: 2.5em 3em;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.success-modal h3 {
+  color: #0a2463;
+  font-size: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.success-modal p {
+  color: #333;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bloquea el scroll de fondo mientras el modal está visible */
+.no-scroll {
+  overflow: hidden;
+}
+
