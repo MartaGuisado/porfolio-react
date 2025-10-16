@@ -1,4 +1,4 @@
-/* --- ESTRUCTURA BASE --- */
+/* --- reset / base --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
+  background: transparent;
 }
 
 .curriculum-section h2 {
@@ -22,8 +23,10 @@
   margin-bottom: 1em;
   max-width: 600px;
   margin-top: 1em;
+  color: #0a2463;
 }
 
+/* botones */
 .curriculum-buttons {
   display: flex;
   justify-content: center;
@@ -66,18 +69,21 @@
 
 .curriculum-modal-content {
   background-color: #f1e3f3;
-  padding: 3em 3.5em;
+  padding: 3rem 3.2rem 4.5rem;
   border-radius: 25px;
-  width: 90vw;          /* 🔹 ocupa casi todo el ancho */
-  max-width: 1400px;    /* 🔹 límite amplio */
-  overflow: visible;    /* 🔹 sin scroll interno */
+  width: 80%;
+  max-width: 1000px;
+  overflow: visible;
   position: relative;
   box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
   animation: fadeIn 0.4s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
 }
 
-
-/* Suave aparición */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -88,55 +94,26 @@
     transform: scale(1);
   }
 }
+
 .curriculum-modal-content h3 {
-  margin-bottom: 1.5em;
+  margin-bottom: 0.6rem;
   font-size: 1.7em;
-  text-align: center;
   color: #0a2463;
+  text-align: center;
 }
 
-/* --- TOOLTIP ESCRITORIO (posición ajustada + animación suave) --- */
-@media (hover: hover) {
-  .formacion-item::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    background: #0a2463;
-    color: #f1e3f3;
-    padding: 0.6em 1em;
-    border-radius: 10px;
-    white-space: normal;
-    width: 270px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(12%, 0); /* 🔹 Ligeramente menos desplazada a la derecha */
-    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    font-size: 0.9em;
-    box-shadow: 0 4px 10px rgba(10, 36, 99, 0.3);
-    z-index: 2000;
-  }
-
-  /* 🔹 Por defecto (primeros elementos → tooltip justo debajo) */
-  .formacion-item:hover::after {
-    opacity: 1;
-    transform: translate(12%, -10%); /* 🔹 Antes 115% → más cerca del elemento */
-  }
-
-  /* 🔹 Últimos elementos (tooltip aparece arriba) */
-  .formacion-item:nth-last-child(-n + 2):hover::after {
-    opacity: 1;
-    transform: translate(12%, -125%); /* 🔹 Ajuste fino: más cerca y más natural */
-  }
-}
-
-/* --- FORMACIONES --- */
+/* --- LISTA DE FORMACIONES --- */
 .formacion-lista {
   display: flex;
   flex-direction: column;
   gap: 1em;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 5;
   overflow: visible !important;
+  padding-bottom: 1.4rem;
+  margin-top: 0.6rem;
 }
 
 .formacion-item {
@@ -145,19 +122,18 @@
   padding: 1.2em 1.8em;
   border-radius: 15px;
   width: 95%;
-  max-width: 700px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
+  max-width: 820px;
+  margin: 0 auto;
+  overflow: visible;
 }
 
 .formacion-item:hover {
   background: #faf9ff;
   transform: translateY(-3px);
 }
-.formacion-item::after {
-  z-index: 2000 !important; /* 🔹 por encima del modal */
-  }
 
 .item-header {
   display: flex;
@@ -171,30 +147,30 @@
   font-weight: 700;
 }
 
-/* Icono + / - */
+/* toggle-icon: hidden on hover-capable devices, visible on touch devices */
 .toggle-icon {
-  display: none; /* visible solo en móvil */
-  font-size: 1.5em;
-  color: #0a2463;
-  transition: transform 0.3s ease;
+  display: none;
 }
 
-
-
-/* --- EXPANSIÓN MÓVIL --- */
+/* show + / - only on touch devices */
 @media (hover: none) {
   .toggle-icon {
-    display: block;
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0a2463;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
   }
 
-  .formacion-item.open {
-    background: #247ba020;
+  .formacion-item.open .toggle-icon {
+    transform: rotate(180deg);
   }
 
+  /* mobile expansion: hide tooltip (no hover) and show details on open */
   .formacion-item .detalle {
     display: none;
   }
-
   .formacion-item.open .detalle {
     display: block;
     color: #333;
@@ -203,18 +179,37 @@
     margin-top: 0.6em;
     animation: slideDown 0.3s ease forwards;
   }
+}
 
-  .formacion-item.open .toggle-icon {
-    transform: rotate(180deg);
+/* --- TOOLTIP: only for hover-capable devices; position to the right centered vertically --- */
+@media (hover: hover) {
+  .formacion-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 15px);
+    transform: translateY(-50%) translateX(0);
+    background: #0a2463;
+    color: #f1e3f3;
+    padding: 0.7em 1em;
+    border-radius: 10px;
+    white-space: normal;
+    width: 260px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    font-size: 0.9em;
+    box-shadow: 0 8px 20px rgba(10, 36, 99, 0.35);
+    z-index: 1000;
+  }
+
+  .formacion-item:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(8px);
   }
 }
 
-.softskills-content p,
-.competencias-content p {
-  margin-bottom: 1.2em;
-}
-
-/* Efecto slide-down suave al expandir */
+/* slideDown animation for mobile expansion */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -226,73 +221,57 @@
   }
 }
 
-/* --- ASPA DE CIERRE ELEGANTE --- */
+/* CIERRE MODAL */
 .curriculum-close-icon {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 26px;
+  right: 26px;
   background: none;
   border: none;
-  font-size: 2em;
+  font-size: 2.2em;
   font-weight: bold;
-  color: #0a2463;
+  color: #e48022;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
-}
-
-@keyframes appearClose {
-  to {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
+  z-index: 1001;
 }
 
 .curriculum-close-icon:hover {
-  color: #e48022;
-  transform: scale(1.2);
+  color: #0a2463;
+  transform: scale(1.18);
 }
 
+.softskills-content, 
+.competencias-content {
+  text-align: justify;
+  padding: 1em;
+  
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .curriculum-modal-content {
     width: 95%;
-    padding: 2em 2em 2.5em 2em;
-    border-radius: 20px;
-    font-size: 1em;
+    padding: 2rem;
   }
-
-  .curriculum-modal-content h3 {
-    font-size: 1.4em;
-  }
-
-  .close-icon {
-    top: 10px;
-    right: 15px;
-    font-size: 1.6em;
-  }
-
   .formacion-item {
     width: 100%;
-    padding: 1em;
   }
-
-  .softskills-content p,
-  .competencias-content p {
-    font-size: 0.95em;
+  .curriculum-close-icon {
+    top: 12px;
+    right: 14px;
+    font-size: 1.6em;
   }
 }
 
-/* --- Extra small (móviles pequeños) --- */
 @media (max-width: 480px) {
   .curriculum-modal-content {
-    padding: 1.8em;
+    padding: 1.6rem;
   }
-
   .curriculum-modal-content h3 {
     font-size: 1.2em;
-    margin-bottom: 1em;
   }
-
-  .close-icon {
-    font-size: 1.5em;
+  .curriculum-close-icon {
+    font-size: 1.4em;
   }
 }
