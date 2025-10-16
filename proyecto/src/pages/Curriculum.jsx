@@ -90,7 +90,7 @@ function Curriculum() {
       id: "softskills",
       title: "Soft Skills",
       content: (
-        <>
+        <div className="softskills-content">
           <p>
             Me apasiona conectar ideas, personas y emociones a través del diseño.
             Creo en la comunicación efectiva como puente entre la creatividad y
@@ -106,14 +106,14 @@ function Curriculum() {
             Afronto los retos con resolución y equilibrio emocional, buscando
             siempre soluciones creativas y efectivas.
           </p>
-        </>
+        </div>
       ),
     },
     {
       id: "competencias",
       title: "Competencias Clave",
       content: (
-        <>
+        <div className="competencias-content">
           <p>
             Domino el lenguaje visual y el copywriting para construir mensajes
             que no solo se vean bien, sino que comuniquen con intención. Me
@@ -132,7 +132,7 @@ function Curriculum() {
             InDesign y Canva para transformar ideas en experiencias visuales que
             inspiran y conectan.
           </p>
-        </>
+        </div>
       ),
     },
   ];
@@ -164,27 +164,28 @@ function Curriculum() {
           openModal === sec.id && (
             <div
               key={sec.id}
-              className="modal-overlay"
+              className="curriculum-modal-overlay"
               onClick={() => {
                 setOpenModal(null);
                 setOpenCard(null);
               }}
             >
               <div
-                className="modal-content"
+                className="curriculummodal-content"
                 onClick={(e) => e.stopPropagation()}
               >
                 <h3>{sec.title}</h3>
                 {sec.content}
                 <button
-                  className="close-btn"
-                  onClick={() => {
-                    setOpenModal(null);
-                    setOpenCard(null);
-                  }}
-                >
-                  Cerrar
-                </button>
+  className="curriculum-close-icon"
+  onClick={() => {
+    setOpenModal(null);
+    setOpenCard(null);
+  }}
+  aria-label="Cerrar modal"
+>
+  ×
+</button>
               </div>
             </div>
           )

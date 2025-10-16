@@ -1,86 +1,71 @@
+/* ======= HOME.CSS CORREGIDO ======= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Contenedor general */
 .home-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
   background: linear-gradient(135deg, #f1e3f3 0%, #fff8fb 100%);
   min-height: 100vh;
-  width: 100%;
+  overflow-x: hidden;
 }
 
-.home-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 4em 1.5em 2em 1.5em;
-  width: 100%;
+/* Imagen lateral fija */
+.home-photo-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40vw;
+  height: 100vh;
+  background: url("../assets/mi-foto.png") no-repeat right center;
+  background-size: contain;
+  background-attachment: fixed;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Caja hero con sombra */
-.hero-card {
-  background-color: white;
-  border-radius: 25px;
-  padding: 2em;
-  margin: 0;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+/* Área de contenido general */
+.home-content-area {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  /* quitar transform inicial, React lo maneja */
-  opacity: 1;
+  padding: 2em 3em; /* 🔹 menos espacio vertical */
+  margin: 0 auto;
 }
 
-@keyframes fadeInHero {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Contenedor interno con flex */
-.home-content {
-  display: flex;
-  align-items: flex-start; /* texto alineado al borde superior de la foto */
-  gap: 2em;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-/* Foto */
-.home-photo {
-  width: 200px;
-  height: auto;
-  border-radius: 35px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.home-photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Texto */
-.home-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex: 1; /* ocupa todo el espacio disponible a la derecha de la foto */
+/* Hero */
+.hero-card {
+  background: white;
+  border-radius: 25px;
+  margin-top: 1em; /* 🔹 antes era 4em o más, ahora sube */
+  margin-bottom: 2em; /* 🔹 más compacto */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
   text-align: justify;
-  margin-right: 2em;
-  margin-top: 1em;
-  padding: 1em;
+  width: 75%;       /* 🔹 más proporcionada */
+  margin-left: -6vw; /* 🔹 Mueve la hero hacia la izquierda */
+  max-width: 700px;
+  padding: 2.5em 3em; /* 🔹 Más espacio interior */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* 🔹 suaviza animación */
+}
+
+.hero-card:hover {
+  transform: translateY(-6px) scale(1.02); /* 🔹 se eleva y crece un pelín */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2); /* 🔹 sombra más profunda */
+}
+
+.home-text h1 {
+  margin-bottom: 1em; /* 🔹 Más separación debajo del título */
 }
 
 .home-text p {
   margin-top: 0.5em;
-  margin-bottom: 0.5;
+  margin-bottom: 0.5em;
+  line-height: 1.6; /* 🔹 Interlineado un poco más alto */
 }
 
 /* Botones */
@@ -101,23 +86,12 @@
   font-size: 1em;
   color: white;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
-
-.btn .icon {
-  font-size: 1.2em;
-  margin-right: 0.5em; /* espacio entre icono y texto */
-}
-
-.btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
 }
 
 .github-btn {
   background-color: #24292e;
 }
-
 .github-btn:hover {
   background-color: #161b22;
 }
@@ -125,81 +99,39 @@
 .linkedin-btn {
   background-color: #0077b5;
 }
-
 .linkedin-btn:hover {
   background-color: #005582;
 }
 
-/* Animación fade-in para texto */
-.fade-in {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: fadeInText 1s forwards;
-  animation-delay: 0.3s;
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes fadeInText {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-/* 🔹 Sección de tarjetas (ahora sí debajo) */
+/* Tarjetas */
 .cards-section {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2em;
-  margin: 3em auto;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1200px;
-}
-
-/* Tarjetas individuales (sin cambios) */
-
-.info-card h3 {
-  color: #E48022;
-  text-align: center;
-  margin-bottom: 0.8em;
-}
-
-.card-icon {
-  font-size: 2.5em;
-  text-align: center;
-  margin-bottom: 0.5em;
-  transition: transform 0.3s ease;
-}
-
-.info-card:hover .card-icon {
-  transform: scale(1.2) rotate(5deg);
-}
-/* ======== TARJETAS ======== */
-
-/* Contenedor de tarjetas: horizontal y centrado */
-.cards-section {
-  display: flex;
-  justify-content: center;
-  align-items: stretch; /* todas las tarjetas tendrán la misma altura */
   gap: 2em;
-  margin: 3em auto;
-  flex-wrap: nowrap; /* sin saltos de línea para horizontal */
-  width: 100%;
-  max-width: 1200px;
+  margin-top: 1em;     /* 🔹 suben un poco */
+  margin-bottom: 3em;  /* 🔹 menos espacio abajo */
+  justify-content: flex-start; /* 🔹 Alinea las tarjetas con la hero */
+  margin-left: -6vw; /* 🔹 Misma posición lateral que la hero */
 }
 
-/* Tarjetas: más horizontales y uniformes */
+.flip-card {
+  perspective: 1000px;
+}
+
 .info-card {
   background-color: white;
   border-radius: 20px;
   padding: 1.5em;
-  width: 360px;        /* ancho fijo */
-  min-height: 280px;   /* altura mínima uniforme */
+  width: 330px;
+  min-height: 280px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   perspective: 1000px;
-  display: flex;
-  justify-content: center; /* horizontalmente */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -208,13 +140,13 @@
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Flip inner */
+/* Efecto flip */
 .flip-inner {
   position: relative;
   width: 100%;
   min-height: 280px;
-  text-align: center;
-  transition: transform 0.6s;
+  height: 100%;
+  transition: transform 0.8s ease; /* 🔹 Animación más suave */
   transform-style: preserve-3d;
 }
 
@@ -222,14 +154,13 @@
   transform: rotateY(180deg);
 }
 
-/* Frente y reverso */
 .card-front,
 .card-back {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 280px;    /* uniforme */
+  min-height: 280px;
   padding: 1em;
   backface-visibility: hidden;
   border-radius: 20px;
@@ -237,43 +168,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
+
+.card-front h3 {
+  margin-bottom: 1em;
+  text-align: center;
+  justify-content: center;
+}
+
+.card-front p {
+  margin-bottom: 1em;
+  text-align: center;
+  justify-content: center;
+}
 .card-back {
   transform: rotateY(180deg);
   background-color: #fdfdfd;
 }
 
-.card-front:hover {
-  transform: scale(1.03);
-}
-
-/* Iconos y títulos */
-.card-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-front h3,
 .card-back h3 {
-  margin-bottom: 0.5rem;
-  color: #333;
+  margin-bottom: 1em;
+  text-align: center;
+  justify-content: center;
 }
 
-.card-front p,
 .card-back p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
+  margin-bottom: 1em;
+  text-align: center;
+  justify-content: center;
 }
 
+/* Iconos principales */
+.card-icon {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  transition: transform 0.3s ease;
+}
 
-/* ======== NUBE DE ICONOS ======== */
+.info-card:hover .card-icon {
+  transform: scale(1.2) rotate(5deg);
+}
 
 /* Nube de iconos */
 .icon-cloud {
@@ -281,7 +217,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem 0;
+  margin-top: 1em;
 }
 
 .tool-icon {
@@ -289,52 +225,26 @@
   height: 40px;
   filter: grayscale(100%);
   transition: filter 0.3s;
-  margin: 0.3em;
 }
 
 .tool-icon:hover {
   filter: grayscale(0%);
 }
 
-/* Colores oficiales de cada herramienta */
-.tool-icon.react:hover {
-  color: #61dafb;
-}
-
-.tool-icon.html:hover {
-  color: #e34f26;
-}
-
-.tool-icon.css:hover {
-  color: #1572b6;
-}
-
-.tool-icon.illustrator:hover {
-  color: #ff9a00;
-}
-
-.tool-icon.indesign:hover {
-  color: #ff3366;
-}
-
-.tool-icon.photoshop:hover {
-  color: #31a8ff;
-}
-
-.tool-icon.canva:hover {
-  color: #00c4cc;
-}
-
-.tool-icon.meta:hover {
-  color: #1877f2;
-}
-
-.tool-icon.metricool:hover {
-  color: #ff5c8a;
-}
-
-/* ======== RESPONSIVE ======== */
+/* Responsivo */
 @media (max-width: 900px) {
+  .home-photo-bg {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-position: center top;
+    background-size: contain;
+  }
+
+  .home-content-area {
+    padding: 2em 1.5em;
+  }
+
   .cards-section {
     flex-direction: column;
     align-items: center;
@@ -344,9 +254,11 @@
     width: 90%;
     max-width: 350px;
   }
-  .flip-inner,
-  .card-front,
-  .card-back {
-    height: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
   }
 }

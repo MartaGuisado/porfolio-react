@@ -50,7 +50,7 @@
 }
 
 /* --- MODAL --- */
-.modal-overlay {
+.curriculum-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -61,51 +61,72 @@
   justify-content: center;
   align-items: center;
   z-index: 999;
+  padding: 2em;
 }
 
-/* Ajustado: modal más pequeño y centrado */
-.modal-content {
+.curriculum-modal-content {
   background-color: #f1e3f3;
-  padding: 2em;
+  padding: 3em 3.5em;
   border-radius: 25px;
-  width: 70%;
-  max-width: 750px; /* antes 900px */
-  max-height: 80vh; /* antes 90vh */
-  overflow-y: auto;
+  width: 90vw;          /* 🔹 ocupa casi todo el ancho */
+  max-width: 1400px;    /* 🔹 límite amplio */
+  overflow: visible;    /* 🔹 sin scroll interno */
   position: relative;
   box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.4s ease;
 }
+
 
 /* Suave aparición */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
-
-.modal-content h3 {
+.curriculum-modal-content h3 {
   margin-bottom: 1.5em;
-  font-size: 1.5em;
+  font-size: 1.7em;
   text-align: center;
+  color: #0a2463;
 }
 
-.modal-content {
-  background-color: #f1e3f3;
-  padding: 2em;
-  border-radius: 25px;
-  width: 70%;
-  max-width: 750px;
-  max-height: 90vh; /* margen de seguridad para pantallas pequeñas */
-  overflow-y: visible; /* 🔹 Se adapta al contenido (sin scroll) */
-  position: relative;
-  box-shadow: 0 0 25px rgba(228, 128, 34, 0.4);
-  animation: fadeIn 0.4s ease;
+/* --- TOOLTIP ESCRITORIO (posición ajustada + animación suave) --- */
+@media (hover: hover) {
+  .formacion-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #0a2463;
+    color: #f1e3f3;
+    padding: 0.6em 1em;
+    border-radius: 10px;
+    white-space: normal;
+    width: 270px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(12%, 0); /* 🔹 Ligeramente menos desplazada a la derecha */
+    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-size: 0.9em;
+    box-shadow: 0 4px 10px rgba(10, 36, 99, 0.3);
+    z-index: 2000;
+  }
+
+  /* 🔹 Por defecto (primeros elementos → tooltip justo debajo) */
+  .formacion-item:hover::after {
+    opacity: 1;
+    transform: translate(12%, -10%); /* 🔹 Antes 115% → más cerca del elemento */
+  }
+
+  /* 🔹 Últimos elementos (tooltip aparece arriba) */
+  .formacion-item:nth-last-child(-n + 2):hover::after {
+    opacity: 1;
+    transform: translate(12%, -125%); /* 🔹 Ajuste fino: más cerca y más natural */
+  }
 }
 
 /* --- FORMACIONES --- */
@@ -114,23 +135,29 @@
   flex-direction: column;
   gap: 1em;
   align-items: center;
+  width: 100%;
+  overflow: visible !important;
 }
 
 .formacion-item {
   position: relative;
   background: #fff;
-  padding: 1em 1.5em;
+  padding: 1.2em 1.8em;
   border-radius: 15px;
-  width: 90%;
-  max-width: 600px;
+  width: 95%;
+  max-width: 700px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(10, 36, 99, 0.1);
+  box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
 }
 
 .formacion-item:hover {
-  background: #f5f5ff;
+  background: #faf9ff;
+  transform: translateY(-3px);
 }
+.formacion-item::after {
+  z-index: 2000 !important; /* 🔹 por encima del modal */
+  }
 
 .item-header {
   display: flex;
@@ -152,39 +179,7 @@
   transition: transform 0.3s ease;
 }
 
-/* --- TOOLTIP ESCRITORIO (posición ajustada + animación suave) --- */
-@media (hover: hover) {
-  .formacion-item::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    background: #0a2463;
-    color: #f1e3f3;
-    padding: 0.6em 1em;
-    border-radius: 10px;
-    white-space: normal;
-    width: 270px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(12%, 0); /* 🔹 Ligeramente menos desplazada a la derecha */
-    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    font-size: 0.9em;
-    box-shadow: 0 4px 10px rgba(10, 36, 99, 0.3);
-    z-index: 10;
-  }
 
-  /* 🔹 Por defecto (primeros elementos → tooltip justo debajo) */
-  .formacion-item:hover::after {
-    opacity: 1;
-    transform: translate(12%, -10%); /* 🔹 Antes 115% → más cerca del elemento */
-  }
-
-  /* 🔹 Últimos elementos (tooltip aparece arriba) */
-  .formacion-item:nth-last-child(-n + 2):hover::after {
-    opacity: 1;
-    transform: translate(12%, -125%); /* 🔹 Ajuste fino: más cerca y más natural */
-  }
-}
 
 /* --- EXPANSIÓN MÓVIL --- */
 @media (hover: none) {
@@ -214,6 +209,11 @@
   }
 }
 
+.softskills-content p,
+.competencias-content p {
+  margin-bottom: 1.2em;
+}
+
 /* Efecto slide-down suave al expandir */
 @keyframes slideDown {
   from {
@@ -226,20 +226,73 @@
   }
 }
 
-/* --- BOTÓN CERRAR --- */
-.close-btn {
-  display: inline-block;
-  margin: 2em auto 0 auto;
-  padding: 0.6em 1.5em;
-  font-size: 1em;
+/* --- ASPA DE CIERRE ELEGANTE --- */
+.curriculum-close-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
   border: none;
-  border-radius: 8px;
-  background-color: #e48022;
-  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  color: #0a2463;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.close-btn:hover {
-  background-color: #c96c1c;
+@keyframes appearClose {
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.curriculum-close-icon:hover {
+  color: #e48022;
+  transform: scale(1.2);
+}
+
+@media (max-width: 900px) {
+  .curriculum-modal-content {
+    width: 95%;
+    padding: 2em 2em 2.5em 2em;
+    border-radius: 20px;
+    font-size: 1em;
+  }
+
+  .curriculum-modal-content h3 {
+    font-size: 1.4em;
+  }
+
+  .close-icon {
+    top: 10px;
+    right: 15px;
+    font-size: 1.6em;
+  }
+
+  .formacion-item {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .softskills-content p,
+  .competencias-content p {
+    font-size: 0.95em;
+  }
+}
+
+/* --- Extra small (móviles pequeños) --- */
+@media (max-width: 480px) {
+  .curriculum-modal-content {
+    padding: 1.8em;
+  }
+
+  .curriculum-modal-content h3 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  .close-icon {
+    font-size: 1.5em;
+  }
 }
