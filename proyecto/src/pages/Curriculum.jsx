@@ -3,41 +3,41 @@ import "./Curriculum.css";
 
 function Curriculum() {
   const [openModal, setOpenModal] = useState(null);
-  const [openCard, setOpenCard] = useState(null); // para expansión móvil
+  const [openCard, setOpenCard] = useState(null);
 
   const formaciones = [
     {
-      titulo: "Grado en Diseño Gráfico",
+      titulo: "Licenciatura en Comunicación",
       detalle:
-        "Universidad de Sevilla · 2017–2021. Formación integral en diseño visual, tipografía, composición, branding y comunicación visual.",
+        "Universidad de Sevilla · 2001–2005. Especialidad en Publicidad y Relaciones Públicas.",
     },
     {
-      titulo: "Máster en UX/UI Design",
+      titulo: "Máster en Dirección de Comunicación Empresarial e Institucional",
       detalle:
-        "Escuela XYZ · 2022–2023. Especialización en diseño centrado en el usuario, prototipado, investigación UX y accesibilidad digital.",
+        "Universidad de Sevilla · 2011–2012. Especialización en estrategias de comunicación y gestión de crisis.",
     },
     {
-      titulo: "Certificación en Diseño Web Front-End",
+      titulo: "Posgrado en Marketing Online y RRSS",
       detalle:
-        "Google Actívate · 2024. Desarrollo web con HTML5, CSS3, JavaScript y React enfocado en la experiencia de usuario y el diseño responsive.",
+        "Universidad de Barcelona & OBS · 2011 - 2012. Gestión de campañas digitales y analítica web.",
     },
   ];
 
   const complementarias = [
     {
-      titulo: "Curso de Copywriting Estratégico",
+      titulo: "",
       detalle:
-        "Platzi · 2024. Redacción persuasiva orientada a diseño y marketing digital.",
+        "Certificación en Desarrollo de aplicaciones con tecnologías web · 2025. HTML5, CSS3, Javascript, React, Git, Tailwind, Figma, accesibilidad, responsividad y SEO.",
     },
     {
-      titulo: "Taller de Animación con After Effects",
+      titulo: "Diseño y Experiencia de Usuario (UX/UI)",
       detalle:
-        "Domestika · 2023. Creación de motion graphics aplicados a diseño digital.",
+        "Google · 2025. Fundamentos de UX, investigación de usuarios, diseño de interacción y prototipado.",
     },
     {
-      titulo: "Workshop de Diseño Accesible",
+      titulo: "FP en Diseño Gráfico y autoedición",
       detalle:
-        "UXers Madrid · 2023. Buenas prácticas de accesibilidad en interfaces digitales.",
+        "Confederación de Empresarios de Andalucía · 2010. Diseño gráfico, maquetación, retoque y composición digital.",
     },
   ];
 
@@ -56,7 +56,7 @@ function Curriculum() {
             >
               <div className="item-header">
                 <h4>{f.titulo}</h4>
-                <span className="toggle-icon">{openCard === i ? "−" : "+"}</span>
+                <span className="toggle-icon touch-only">{openCard === i ? "−" : "+"}</span>
               </div>
               <p className="detalle">{f.detalle}</p>
             </div>
@@ -78,7 +78,7 @@ function Curriculum() {
             >
               <div className="item-header">
                 <h4>{f.titulo}</h4>
-                <span className="toggle-icon">{openCard === i ? "−" : "+"}</span>
+                <span className="toggle-icon touch-only">{openCard === i ? "−" : "+"}</span>
               </div>
               <p className="detalle">{f.detalle}</p>
             </div>
@@ -92,19 +92,19 @@ function Curriculum() {
       content: (
         <div className="softskills-content">
           <p>
-            Me apasiona conectar ideas, personas y emociones a través del diseño.
+            Me apasiona <b>conectar ideas, personas y emociones</b> a través del diseño.
             Creo en la comunicación efectiva como puente entre la creatividad y
             el impacto, y en la empatía como base para entender lo que las
-            personas realmente necesitan. Disfruto del trabajo en equipo, donde
+            personas realmente necesitan. Disfruto del <b>trabajo en equipo</b>, donde
             cada intercambio de ideas se convierte en una oportunidad para
             aprender y crear algo mejor.
           </p>
-          <p>
-            Soy una persona curiosa y adaptable, siempre abierta a nuevas
+          <p><br />
+            Soy una persona <b>curiosa y adaptable</b>, siempre abierta a nuevas
             herramientas, tendencias y formas de pensar. Me motiva liderar con
             propósito, impulsando la colaboración, la motivación y la innovación.
             Afronto los retos con resolución y equilibrio emocional, buscando
-            siempre soluciones creativas y efectivas.
+            siempre soluciones <b>creativas y efectivas</b>.
           </p>
         </div>
       ),
@@ -116,20 +116,20 @@ function Curriculum() {
         <div className="competencias-content">
           <p>
             Domino el lenguaje visual y el copywriting para construir mensajes
-            que no solo se vean bien, sino que comuniquen con intención. Me
+            que no solo se vean bien, sino que <b>comuniquen con intención</b>. Me
             especializo en diseño visual y responsive, con una visión centrada en
             la experiencia de usuario.
-          </p>
+          </p><br />
           <p>
             Trabajo con fluidez en entornos colaborativos gracias al control de
             versiones con Git, y combino mis habilidades de diseño con
             conocimientos técnicos en HTML5, CSS3, JavaScript y React. Además,
             aplico estrategias SEO para potenciar la visibilidad de los proyectos
             digitales.
-          </p>
+          </p><br />
           <p>
-            En el día a día, me apoyo en herramientas como Photoshop, Illustrator,
-            InDesign y Canva para transformar ideas en experiencias visuales que
+            En el día a día, me apoyo en herramientas como <b>Photoshop, Illustrator,
+            InDesign y Canva</b> para transformar ideas en experiencias visuales que
             inspiran y conectan.
           </p>
         </div>
@@ -171,21 +171,21 @@ function Curriculum() {
               }}
             >
               <div
-                className="curriculummodal-content"
+                className="curriculum-modal-content"
                 onClick={(e) => e.stopPropagation()}
               >
                 <h3>{sec.title}</h3>
                 {sec.content}
                 <button
-  className="curriculum-close-icon"
-  onClick={() => {
-    setOpenModal(null);
-    setOpenCard(null);
-  }}
-  aria-label="Cerrar modal"
->
-  ×
-</button>
+                  className="curriculum-close-icon"
+                  onClick={() => {
+                    setOpenModal(null);
+                    setOpenCard(null);
+                  }}
+                  aria-label="Cerrar modal"
+                >
+                  ×
+                </button>
               </div>
             </div>
           )
