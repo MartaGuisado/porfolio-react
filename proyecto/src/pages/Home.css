@@ -23,7 +23,6 @@
   height: 100vh;
   background: url("../assets/mi-foto.png") no-repeat right center;
   background-size: contain;
-  background-attachment: fixed;
   pointer-events: none;
   z-index: 0;
 }
@@ -60,6 +59,7 @@
 
 .home-text h1 {
   margin-bottom: 1em; /* 🔹 Más separación debajo del título */
+
 }
 
 .home-text p {
@@ -266,6 +266,10 @@
     margin-left: auto; /* eliminamos el desplazamiento lateral */
     max-width: none;
     padding: 2em 1.5em;
+  }
+
+  .home-text h1 {
+    text-align: center;
   }
 
   /* 🔹 Alineamos las tarjetas también */
