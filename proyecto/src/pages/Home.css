@@ -231,34 +231,52 @@
   filter: grayscale(0%);
 }
 
-/* Responsivo */
+
+/* ======= MEDIA QUERIES ======= */
+@media (hover: hover) and (pointer: fine) {
+  .hero-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @media (max-width: 900px) {
+  /* 🔹 En móviles, la imagen pasa a ser fondo de la página */
   .home-photo-bg {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-position: center top;
-    background-size: contain;
+    display: none; /* Ocultamos el bloque original */
   }
 
+  .home-page {
+    background: 
+      linear-gradient(135deg, rgba(241, 227, 243, 0.85) 0%, rgba(255, 248, 251, 0.9) 100%),
+      url("../assets/mi-foto.png") no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+
+  /* 🔹 Ajustes de contenido */
   .home-content-area {
+    padding: 2em 1em;
+  }
+
+  /* 🔹 Hero card más ancha y centrada */
+  .hero-card {
+    width: 95%;
+    margin: 1.5em auto;
+    margin-left: auto; /* eliminamos el desplazamiento lateral */
+    max-width: none;
     padding: 2em 1.5em;
   }
 
+  /* 🔹 Alineamos las tarjetas también */
   .cards-section {
     flex-direction: column;
     align-items: center;
+    margin-left: 0;
   }
 
   .info-card {
     width: 90%;
     max-width: 350px;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .hero-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
   }
 }
