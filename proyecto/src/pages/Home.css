@@ -248,10 +248,13 @@
 
   /* 🔹 Solo fondo degradado (sin imagen) */
   .home-page {
-    background: linear-gradient(135deg, rgba(241, 227, 243, 0.85) 0%, rgba(255, 248, 251, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      #f1e3f3 0%,
+      #fff8fb 100%
+    );
   }
-
-
+  
   /* 🔹 Ajustes de contenido */
   .home-content-area {
     padding: 2em 1em;
