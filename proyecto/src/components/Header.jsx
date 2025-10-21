@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import Contacto from "../pages/Contacto";
 
 function Header() {
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuAbierto(!menuAbierto);
+  };
+
+  const cerrarMenu = () => {
+    setMenuAbierto(false);
+  };
+
   return (
     <header className="header">
       <h1 className="logo">¡Hola, soy Marta!</h1>
-      <nav className="nav">
-        <Link to="/">Inicio</Link>
-        <Link to="/curriculum">Currículum</Link>
-        <Link to="/porfolio">Porfolio</Link>
-        <Link to="/contacto">Contacto</Link>
+
+      {/* Botón hamburguesa */}
+      <button
+        className={`hamburger ${menuAbierto ? "active" : ""}`}
+        onClick={toggleMenu}
+        aria-label="Abrir menú"
+      >
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </button>
+
+      {/* Navegación */}
+      <nav className={`nav ${menuAbierto ? "active" : ""}`}>
+        <Link to="/" onClick={cerrarMenu}>Inicio</Link>
+        <Link to="/curriculum" onClick={cerrarMenu}>Currículum</Link>
+        <Link to="/porfolio" onClick={cerrarMenu}>Porfolio</Link>
+        <Link to="/contacto" onClick={cerrarMenu}>Contacto</Link>
       </nav>
     </header>
   );
