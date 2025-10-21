@@ -241,29 +241,26 @@
 }
 
 @media (max-width: 900px) {
-  /* 🔹 En móviles, la imagen pasa a ser fondo de la página */
+  /* 🔹 Ocultamos la imagen lateral */
   .home-photo-bg {
-    display: none; /* Ocultamos el bloque original */
+    display: none;
   }
 
+  /* 🔹 Solo fondo degradado (sin imagen) */
   .home-page {
-    background: 
-      linear-gradient(135deg, rgba(241, 227, 243, 0.85) 0%, rgba(255, 248, 251, 0.9) 100%),
-      url("../assets/mi-foto.png") no-repeat center top;
-    background-size: cover;
-    background-attachment: scroll;
+    background: linear-gradient(135deg, rgba(241, 227, 243, 0.85) 0%, rgba(255, 248, 251, 0.9) 100%);
   }
+
 
   /* 🔹 Ajustes de contenido */
   .home-content-area {
     padding: 2em 1em;
   }
 
-  /* 🔹 Hero card más ancha y centrada */
   .hero-card {
     width: 95%;
     margin: 1.5em auto;
-    margin-left: auto; /* eliminamos el desplazamiento lateral */
+    margin-left: auto;
     max-width: none;
     padding: 2em 1.5em;
   }
