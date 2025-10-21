@@ -275,21 +275,62 @@
   }
 }
 
-/* ======== Responsive ======== */
+/* ======== Ajustes específicos para móviles ======== */
 @media (max-width: 768px) {
+  /* 🔹 El modal normal ocupa casi toda la pantalla */
+  .portfolio-modal-content {
+    width: 95vw;
+    height: 95vh;
+    max-width: none;
+    border-radius: 18px;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* centra el contenido verticalmente */
+    align-items: center;      /* centra horizontalmente */
+    text-align: center;
+  }
+
+  /* 🔹 La imagen dentro del modal se amplía */
+  .portfolio-modal-content img {
+    width: 95%;
+    max-width: 95%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 1.2em;
+  }
+
+  /* 🔹 Texto centrado y con buen espaciado */
+  .portfolio-modal-content p {
+    max-width: 90%;
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 0.8em 0 1.5em;
+    text-align: center;
+  }
+
+  /* 🔹 Botón de cierre centrado */
+  .portfolio-close-btn {
+    align-self: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    padding: 0.8em 1.6em;
+  }
+
+  /* 🔹 Versión de modal con imagen grande (galería) */
   .portfolio-modal-content.modal-imagen-grande {
-    width: 90vw !important;
-    max-width: 95vw !important;
+    width: 95vw !important;
+    height: auto !important;
+    max-width: none !important;
     padding: 1.5em !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
   .portfolio-modal-content.modal-imagen-grande img {
     width: 95% !important;
+    height: auto !important;
     max-width: 95vw !important;
-  }
-
-  .portfolio-modal-content.modal-imagen-grande .portfolio-close-btn {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
   }
 }
