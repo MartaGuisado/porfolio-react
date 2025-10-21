@@ -30,7 +30,7 @@
 /* Área de contenido general */
 .home-content-area {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   max-width: 1200px;
   padding: 2em 3em; /* 🔹 menos espacio vertical */
   margin: 0 auto;
