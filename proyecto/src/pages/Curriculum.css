@@ -69,7 +69,7 @@
   background-color: #f1e3f3;
   padding: 3em 3.5em;
   border-radius: 25px;
-  width: 90vw;          /* 🔹 ocupa casi todo el ancho */
+  width: 60vw;          /* 🔹 ocupa casi todo el ancho */
   max-width: 1400px;    /* 🔹 límite amplio */
   overflow: visible;    /* 🔹 sin scroll interno */
   position: relative;
@@ -129,6 +129,11 @@
     transform: translate(12%, -125%); /* 🔹 Ajuste fino: más cerca y más natural */
   }
 }
+
+  /* 🔹 Corrige el primer tooltip (sube más para evitar solapamiento) */
+  .formacion-item:first-child:hover::after {
+    transform: translate(12%, -160%) !important;
+  }
 
 /* --- FORMACIONES --- */
 .formacion-lista {

@@ -14,20 +14,20 @@ function Curriculum() {
     {
       titulo: "Máster en Dirección de Comunicación Empresarial e Institucional",
       detalle:
-        "Universidad de Sevilla · 2011–2012. Especialización en estrategias de comunicación y gestión de crisis.",
+        "Universidad de Sevilla · 2011–2012. Estrategias de comunicación y gestión de crisis.",
     },
     {
       titulo: "Posgrado en Marketing Online y RRSS",
       detalle:
-        "Universidad de Barcelona & OBS · 2011 - 2012. Gestión de campañas digitales y analítica web.",
+        "Universidad de Barcelona & OBS · 2011–2012. Campañas digitales y analítica web.",
     },
   ];
 
   const complementarias = [
     {
-      titulo: "",
+      titulo: "Desarrollo de aplicaciones con tecnologías web",
       detalle:
-        "Certificación en Desarrollo de aplicaciones con tecnologías web · 2025. HTML5, CSS3, Javascript, React, Git, Tailwind, Figma, accesibilidad, responsividad y SEO.",
+        "Certificación en Desarrollo de aplicaciones con tecnologías web · 2025. HTML5, CSS3, JavaScript, React, Git, Tailwind, Figma, accesibilidad, responsividad y SEO.",
     },
     {
       titulo: "Diseño y Experiencia de Usuario (UX/UI)",
@@ -41,6 +41,24 @@ function Curriculum() {
     },
   ];
 
+  const experiencia = [
+    {
+      titulo: "Diseñadora y comunicadora freelance",
+      detalle:
+        "2015 – Actualidad · Branding, diseño visual, estrategia de contenido y desarrollo web. Colaboraciones con agencias y marcas independientes.",
+    },
+    {
+      titulo: "Responsable de comunicación corporativa",
+      detalle:
+        "Empresa XYZ · 2010 – 2015 · Gestión de marca, relaciones públicas, campañas de comunicación y coordinación de equipos creativos.",
+    },
+    {
+      titulo: "Diseñadora gráfica y creativa publicitaria",
+      detalle:
+        "Agencia Creativa ABC · 2006 – 2010 · Diseño de identidad visual, materiales publicitarios, conceptualización de campañas y supervisión de producción.",
+    },
+  ];
+
   const sections = [
     {
       id: "formacion",
@@ -50,13 +68,17 @@ function Curriculum() {
           {formaciones.map((f, i) => (
             <div
               key={i}
-              className={`formacion-item ${openCard === i ? "open" : ""}`}
+              className={`formacion-item ${openCard === `formacion-${i}` ? "open" : ""}`}
               data-tooltip={f.detalle}
-              onClick={() => setOpenCard(openCard === i ? null : i)}
+              onClick={() =>
+                setOpenCard(openCard === `formacion-${i}` ? null : `formacion-${i}`)
+              }
             >
               <div className="item-header">
                 <h4>{f.titulo}</h4>
-                <span className="toggle-icon touch-only">{openCard === i ? "−" : "+"}</span>
+                <span className="toggle-icon touch-only">
+                  {openCard === `formacion-${i}` ? "−" : "+"}
+                </span>
               </div>
               <p className="detalle">{f.detalle}</p>
             </div>
@@ -72,13 +94,17 @@ function Curriculum() {
           {complementarias.map((f, i) => (
             <div
               key={i}
-              className={`formacion-item ${openCard === i ? "open" : ""}`}
+              className={`formacion-item ${openCard === `complementaria-${i}` ? "open" : ""}`}
               data-tooltip={f.detalle}
-              onClick={() => setOpenCard(openCard === i ? null : i)}
+              onClick={() =>
+                setOpenCard(openCard === `complementaria-${i}` ? null : `complementaria-${i}`)
+              }
             >
               <div className="item-header">
                 <h4>{f.titulo}</h4>
-                <span className="toggle-icon touch-only">{openCard === i ? "−" : "+"}</span>
+                <span className="toggle-icon touch-only">
+                  {openCard === `complementaria-${i}` ? "−" : "+"}
+                </span>
               </div>
               <p className="detalle">{f.detalle}</p>
             </div>
@@ -93,18 +119,15 @@ function Curriculum() {
         <div className="softskills-content">
           <p>
             Me apasiona <b>conectar ideas, personas y emociones</b> a través del diseño.
-            Creo en la comunicación efectiva como puente entre la creatividad y
-            el impacto, y en la empatía como base para entender lo que las
-            personas realmente necesitan. Disfruto del <b>trabajo en equipo</b>, donde
-            cada intercambio de ideas se convierte en una oportunidad para
-            aprender y crear algo mejor.
+            Creo en la comunicación efectiva como puente entre la creatividad y el impacto.
           </p>
-          <p><br />
-            Soy una persona <b>curiosa y adaptable</b>, siempre abierta a nuevas
-            herramientas, tendencias y formas de pensar. Me motiva liderar con
-            propósito, impulsando la colaboración, la motivación y la innovación.
-            Afronto los retos con resolución y equilibrio emocional, buscando
-            siempre soluciones <b>creativas y efectivas</b>.
+          <p>
+            Disfruto del <b>trabajo en equipo</b>, donde cada intercambio de ideas se convierte
+            en una oportunidad para aprender y crear algo mejor.
+          </p>
+          <p>
+            Soy una persona <b>curiosa y adaptable</b>, abierta a nuevas herramientas y tendencias.
+            Me motiva liderar con propósito e impulsar la colaboración y la innovación.
           </p>
         </div>
       ),
@@ -115,26 +138,46 @@ function Curriculum() {
       content: (
         <div className="competencias-content">
           <p>
-            Domino el lenguaje visual y el copywriting para construir mensajes
-            que no solo se vean bien, sino que <b>comuniquen con intención</b>. Me
-            especializo en diseño visual y responsive, con una visión centrada en
-            la experiencia de usuario.
-          </p><br />
+            Domino el lenguaje visual y el copywriting para construir mensajes que no solo se vean bien,
+            sino que <b>comuniquen con intención</b>.
+          </p>
           <p>
-            Trabajo con fluidez en entornos colaborativos gracias al control de
-            versiones con Git, y combino mis habilidades de diseño con
-            conocimientos técnicos en HTML5, CSS3, JavaScript y React. Además,
-            aplico estrategias SEO para potenciar la visibilidad de los proyectos
-            digitales.
-          </p><br />
+            Trabajo con fluidez en entornos colaborativos gracias al control de versiones con Git,
+            y combino mis habilidades de diseño con conocimientos técnicos en HTML5, CSS3, JavaScript y React.
+          </p>
           <p>
-            En el día a día, me apoyo en herramientas como <b>Photoshop, Illustrator,
-            InDesign y Canva</b> para transformar ideas en experiencias visuales que
-            inspiran y conectan.
+            En el día a día utilizo herramientas como <b>Photoshop, Illustrator, InDesign y Canva</b>
+            para transformar ideas en experiencias visuales.
           </p>
         </div>
       ),
     },
+    {
+  id: "experiencia",
+  title: "Experiencia profesional",
+  content: (
+    <div className="formacion-lista">
+      {experiencia.map((f, i) => (
+        <div
+          key={i}
+          className={`formacion-item ${openCard === `exp-${i}` ? "open" : ""}`}
+          data-tooltip={f.detalle}
+          onClick={() =>
+            setOpenCard(openCard === `exp-${i}` ? null : `exp-${i}`)
+          }
+        >
+          <div className="item-header">
+            <h4>{f.titulo}</h4>
+            <span className="toggle-icon touch-only">
+              {openCard === `exp-${i}` ? "−" : "+"}
+            </span>
+          </div>
+          <p className="detalle">{f.detalle}</p>
+        </div>
+      ))}
+    </div>
+  ),
+},
   ];
 
   return (
