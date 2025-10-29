@@ -1,42 +1,32 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import "./TarjetaPorfolio.css";
+import ModalCarrusel from "./ModalCarrusel"; // 👈 asegúrate de importar el carrusel
 
 function TarjetaPortfolio({ titulo, palabras }) {
   const [modalIndex, setModalIndex] = useState(null);
+  const [activo, setActivo] = useState(false); // 👈 para controlar el giro con clic
+
+  const toggleCard = () => {
+    setActivo(!activo);
+  };
 
   const modalIsImage =
-  modalIndex !== null && palabras[modalIndex]?.grande === true;
+    modalIndex !== null && palabras[modalIndex]?.grande === true;
 
   const modalContent =
     modalIndex !== null ? (
-      <div
-        className="portfolio-modal-overlay"
-        onClick={() => setModalIndex(null)}
-      >
-        <div
-          className={`portfolio-modal-content ${
-            modalIsImage ? "modal-imagen-grande" : ""
-          }`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <img
-            src={palabras[modalIndex].imagen}
-            alt={palabras[modalIndex].texto}
-          />
-          <p>{palabras[modalIndex].descripcion}</p>
-          <button
-            className="portfolio-close-btn"
-            onClick={() => setModalIndex(null)}
-          >
-            Cerrar
-          </button>
-        </div>
-      </div>
+      <ModalCarrusel
+        imagenes={palabras.map((p) => p.imagen)}
+        onClose={() => setModalIndex(null)}
+      />
     ) : null;
 
   return (
-    <div className="tarjeta-portfolio-container">
+    <div
+      className={`tarjeta-portfolio-container ${activo ? "activa" : ""}`}
+      onClick={toggleCard}
+    >
       <div className="tarjeta-portfolio">
         <div className="portfolio-front">
           <h3>{titulo}</h3>
@@ -59,36 +49,20 @@ function TarjetaPortfolio({ titulo, palabras }) {
                 ) : (
                   <span
                     className="portfolio-palabra"
-                    onClick={() => setModalIndex(index)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // evita cerrar la tarjeta
+                      setModalIndex(index);
+                    }}
                   >
                     {item.texto}
                   </span>
                 )}
-
-                <div className="portfolio-imagen-hover">
-                  {item.Link ? (
-                    <a
-                      href={item.Link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img src={item.imagen} alt={item.texto} />
-                    </a>
-                  ) : (
-                    <img
-                      src={item.imagen}
-                      alt={item.texto}
-                      onClick={() => setModalIndex(index)}
-                    />
-                  )}
-                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Renderizamos el modal en un portal fuera del árbol transformado */}
       {createPortal(modalContent, document.getElementById("modal-root"))}
     </div>
   );

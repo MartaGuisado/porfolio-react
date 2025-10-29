@@ -14,6 +14,11 @@
   cursor: pointer;
 }
 
+.tarjeta-portfolio-container.activa .tarjeta-portfolio {
+  transform: rotateY(180deg);
+}
+
+/* Permite que gire automáticamente al pasar el ratón */
 .tarjeta-portfolio-container:hover .tarjeta-portfolio {
   transform: rotateY(180deg);
 }
@@ -150,10 +155,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 999999 !important;
   animation: fadeIn 0.4s ease forwards;
 }
-
 
 .portfolio-modal-content {
   background-color: #f1e3f3;

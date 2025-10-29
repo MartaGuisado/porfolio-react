@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import "./Header.css";
 
 function Header() {
@@ -15,7 +16,10 @@ function Header() {
 
   return (
     <header className="header">
-      <h1 className="logo">¡Hola, soy Marta!</h1>
+      <h1 className="headline">Diseñadora gráfica &amp; web developer | Estrategia y creatividad{" "}
+      <span className="location">
+        <FaMapMarkerAlt className="icon"/> Sevilla
+      </span></h1>
 
       {/* Botón hamburguesa */}
       <button

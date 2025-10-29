@@ -41,24 +41,6 @@ function Curriculum() {
     },
   ];
 
-  const experiencia = [
-    {
-      titulo: "Diseñadora y comunicadora freelance",
-      detalle:
-        "2015 – Actualidad · Branding, diseño visual, estrategia de contenido y desarrollo web. Colaboraciones con agencias y marcas independientes.",
-    },
-    {
-      titulo: "Responsable de comunicación corporativa",
-      detalle:
-        "Empresa XYZ · 2010 – 2015 · Gestión de marca, relaciones públicas, campañas de comunicación y coordinación de equipos creativos.",
-    },
-    {
-      titulo: "Diseñadora gráfica y creativa publicitaria",
-      detalle:
-        "Agencia Creativa ABC · 2006 – 2010 · Diseño de identidad visual, materiales publicitarios, conceptualización de campañas y supervisión de producción.",
-    },
-  ];
-
   const sections = [
     {
       id: "formacion",
@@ -151,33 +133,7 @@ function Curriculum() {
           </p>
         </div>
       ),
-    },
-    {
-  id: "experiencia",
-  title: "Experiencia profesional",
-  content: (
-    <div className="formacion-lista">
-      {experiencia.map((f, i) => (
-        <div
-          key={i}
-          className={`formacion-item ${openCard === `exp-${i}` ? "open" : ""}`}
-          data-tooltip={f.detalle}
-          onClick={() =>
-            setOpenCard(openCard === `exp-${i}` ? null : `exp-${i}`)
-          }
-        >
-          <div className="item-header">
-            <h4>{f.titulo}</h4>
-            <span className="toggle-icon touch-only">
-              {openCard === `exp-${i}` ? "−" : "+"}
-            </span>
-          </div>
-          <p className="detalle">{f.detalle}</p>
-        </div>
-      ))}
-    </div>
-  ),
-},
+    },,
   ];
 
   return (
