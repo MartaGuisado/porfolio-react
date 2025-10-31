@@ -11,27 +11,26 @@ function TarjetaPortfolio({ titulo, palabras }) {
 
   const abrirModal = (e) => {
     e.stopPropagation();
-     console.log("🟢 abrirModal ejecutado"); 
     setModalAbierto(true);
   };
 
-  const cerrarModal = () => setModalAbierto(false);
+  const cerrarModal = () => {
+    setModalAbierto(false);
+    setActivo(false); // 👈 Al cerrar el modal, la tarjeta vuelve a su posición original
+  };
 
   return (
     <div
-  className={`tarjeta-portfolio-container ${activo ? "activa" : ""}`}
-  onClick={() => setActivo(!activo)}
->
+      className={`tarjeta-portfolio-container ${activo ? "activa" : ""}`}
+      onClick={toggleCard}
+    >
       <div className="tarjeta-portfolio">
         <div className="portfolio-front">
           <h3>{titulo}</h3>
         </div>
 
         <div className="portfolio-back">
-          <h4
-            className="portfolio-ver-trabajos"
-            onClick={abrirModal}
-          >
+          <h4 className="portfolio-ver-trabajos" onClick={abrirModal}>
             Ver trabajos
           </h4>
         </div>
@@ -42,6 +41,7 @@ function TarjetaPortfolio({ titulo, palabras }) {
           <ModalCarrusel
             imagenes={palabras.map((p) => p.imagen)}
             descripciones={palabras.map((p) => p.descripcion)}
+            palabras={palabras}
             onClose={cerrarModal}
           />,
           document.getElementById("modal-root")

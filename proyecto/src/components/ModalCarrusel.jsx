@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ModalCarrusel.css";
 
-function ModalCarrusel({ imagenes, descripciones, onClose }) {
+function ModalCarrusel({ imagenes, descripciones, onClose, palabras }) {
   const [indice, setIndice] = useState(0);
   const [zoom, setZoom] = useState(false);
 
@@ -10,7 +10,10 @@ function ModalCarrusel({ imagenes, descripciones, onClose }) {
   const toggleZoom = () => setZoom(!zoom);
 
   return (
- <div className={`modal-carrusel-overlay ${zoom ? "zoom-activo" : ""}`} onClick={onClose}>
+    <div
+      className={`modal-carrusel-overlay ${zoom ? "zoom-activo" : ""}`}
+      onClick={onClose}
+    >
       <div
         className="modal-carrusel-contenido"
         onClick={(e) => e.stopPropagation()}
@@ -26,12 +29,23 @@ function ModalCarrusel({ imagenes, descripciones, onClose }) {
 
           <div className="carrusel-imagen">
             <img
-            src={imagenes[indice]}
-            alt={`...`}
-            className={zoom ? "zoom-activo" : ""}
-            onClick={() => setZoom(!zoom)}
+              src={imagenes[indice]}
+              alt="..."
+              className={zoom ? "zoom-activo" : ""}
+              onClick={() => setZoom(!zoom)}
             />
             <p className="carrusel-descripcion">{descripciones[indice]}</p>
+
+            {/* 👇 Enlace al PDF si existe */}
+            {palabras?.[indice]?.pdf && (
+              <a
+                href={palabras[indice].pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver PDF completo
+              </a>
+            )}
           </div>
 
           <button className="siguiente" onClick={siguiente}>
