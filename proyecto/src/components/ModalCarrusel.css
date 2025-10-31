@@ -1,144 +1,160 @@
-/* ModalCarrusel.css
-   - overlay con z-index muy alto para preceder al header
-   - estilos del carrusel y nav
-   - clases fade-in / fade-out para cross-fade
-*/
-
-.modal-overlay {
+/* ======== Overlay (fondo del modal) ======== */
+.modal-carrusel-overlay {
   position: fixed;
   inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999999 !important; /* muy por encima del header */
-  background: rgba(10, 36, 99, 0.32);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+  transition: background-color 220ms ease;
 }
 
-/* carrusel contenedor */
-.modal-carrusel {
-  position: relative;
+/* Fondo aún más oscuro cuando la imagen está ampliada */
+.modal-carrusel-overlay.zoom-activo {
+  background-color: rgba(0, 0, 0, 0.88);
+}
+
+/* ======== Contenedor principal del modal ======== */
+.modal-carrusel-contenido {
+  background-color: #fff;
+  border-radius: 20px;
   width: 85%;
-  height: 85%;
-  max-width: 1400px;
-  max-height: 900px;
-  background: #f1e3f3;
-  border-radius: 14px;
+  max-width: 900px;
+  max-height: 85vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(10, 36, 99, 0.45);
-  z-index: 1000000 !important; /* doble seguridad */
+  position: relative;
+  overflow: hidden; /* el zoom se sale del modal porque usa position:fixed */
+  padding: 1em;
+  box-shadow: 0 10px 40px rgba(10,36,99,0.35);
 }
 
-/* nav buttons */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(36, 123, 160, 0.9);
-  color: #f1e3f3;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(10, 36, 99, 0.25);
-  transition: background 0.18s ease, transform 0.12s ease;
-  z-index: 1001;
-}
-.nav-btn:hover { transform: translateY(-50%) scale(1.03); background: #247ba0; }
-.izquierda { left: 18px; }
-.derecha { right: 18px; }
-
-/* cerrar */
+/* ======== Cerrar (X) ======== */
 .cerrar-modal {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  top: 10px;
+  right: 20px;
+  background: none;
   border: none;
-  background: #e48022;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #e48022;         /* naranja */
+  font-size: 2.0rem;      /* tamaño mayor */
+  font-weight: 800;       /* más gruesa la cruz */
+  line-height: 1;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  z-index: 1100;
+  padding: 0;
+  transition: transform 180ms ease, text-shadow 180ms ease;
+  z-index: 11000;         /* por encima del zoom */
 }
-.cerrar-modal:hover { background: #c96c1c; transform: scale(1.03); }
 
-/* contenedor imagen */
-.imagen-container {
+/* hover sutil, sin mover la X */
+.cerrar-modal:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(228,128,34,0.6);
+}
+
+/* ======== Carrusel (layout) ======== */
+.carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100%;
+}
+
+/* ======== Flechas (sin fondo circular, color naranja) ======== */
+.anterior,
+.siguiente {
+  background: none;
+  border: none;
+  color: #e48022;        /* naranja por defecto */
+  font-size: 2.8rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* centra verticalmente */
+  padding: 0.2rem;
+  z-index: 1000;
+  transition: text-shadow 160ms ease;
+}
+
+/* evitar cambios de transform al hacer hover (no se moverán) */
+.anterior:hover,
+.siguiente:hover {
+  text-shadow: 0 0 12px rgba(228,128,34,0.85);
+}
+
+/* posición lateral */
+.anterior { left: 18px; }
+.siguiente { right: 18px; }
+
+/* ======== Contenedor imagen + texto ======== */
+.carrusel-imagen {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2.5rem 6rem; /* espacio lateral para flechas */
+  text-align: center;
+  width: 100%;
 }
 
-/* imagen principal del carrusel */
-.imagen-carrusel {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(10,36,99,0.12);
-  cursor: zoom-in;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition: transform 0.35s ease;
+/* ======== Imagen normal dentro del modal ======== */
+.carrusel-imagen img {
+  max-width: 85%;
+  max-height: 65vh;      /* evita que la imagen se coma todo el modal */
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: zoom-in;       /* lupa */
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  z-index: 10;
 }
 
-/* enlarged view */
-.imagen-ampliada {
+/* ======== Imagen ampliada: se sale del modal con position:fixed ======== */
+.carrusel-imagen img.zoom-activo {
   position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000000 !important;
-  background: rgba(10,36,99,0.92);
-}
-.imagen-ampliada img.enlarged {
-  width: 80%;
-  max-width: 1200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  max-width: 95vw;
+  max-height: 95vh;
+  width: auto;
   height: auto;
   border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
   cursor: zoom-out;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  z-index: 12000; /* muy por encima */
 }
 
-/* fade classes: fade-out first (se aplica antes de cambiar src) */
-.fade-out {
-  opacity: 0;
-  transform: scale(0.985);
-  transition: opacity 0.18s linear, transform 0.18s ease;
+/* ======== Descripción debajo de la imagen ======== */
+.carrusel-descripcion {
+  margin-top: 1rem;
+  color: #0a2463;
+  font-size: 1.05rem;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
+  z-index: 10;
 }
 
-.fade-in {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
+/* ======== Ajustes responsive ======== */
+@media (max-width: 768px) {
+  .modal-carrusel-contenido {
+    width: 94%;
+    padding: 0.8rem;
+    max-height: 90vh;
+  }
 
-/* pequeña adaptación móvil */
-@media (max-width: 900px) {
-  .modal-carrusel { width: 95%; height: 90%; padding: 1rem; }
-  .imagen-container { padding: 1rem 2.5rem; }
-  .nav-btn { width: 48px; height: 48px; }
-  .cerrar-modal { width: 38px; height: 38px; }
-}
+  .carrusel-imagen img {
+    max-width: 92%;
+    max-height: 55vh;
+  }
 
-/* extra: evita que el header se superponga por posicionamientos raros */
-html, body, #root {
-  height: 100%;
+  .anterior,
+  .siguiente {
+    font-size: 2.2rem;
+    left: 10px;
+    right: 10px;
+  }
 }

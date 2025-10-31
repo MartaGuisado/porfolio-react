@@ -2,7 +2,7 @@ import React from "react";
 import "./Porfolio.css";
 import TarjetaPorfolio from "../components/TarjetaPorfolio.jsx";
 import imagen1 from "../assets/Lanzada.webp";
-import imagen2 from "../assets/Lanzada2.webp";
+import imagen2 from "../assets/web-2.png";
 import imagen3 from "../assets/Isicose .jpg";
 import imagen4 from "../assets/Aplicaciones.png"
 import imagen6 from "../assets/p1.jpg"

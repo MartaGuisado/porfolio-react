@@ -40,14 +40,14 @@
 
 /* ======== Frente ======== */
 .portfolio-front {
-  background-color: #0A2463;
-  color: #F1E3F3;
+  background-color: #0a2463;
+  color: #f1e3f3;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100%;
-  text-align: center; /* 👈 esto también ayuda */
+  text-align: center;
 }
 
 .portfolio-front h3 {
@@ -55,286 +55,62 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
-  text-align: center;     /* 👈 centrado horizontal del texto */
-  width: 80%;             /* 👈 evita que el texto toque los bordes */
-  word-wrap: break-word;  /* 👈 permite saltos de línea naturales */
+  text-align: center;
+  width: 80%;
+  word-wrap: break-word;
 }
 
 /* ======== Reverso ======== */
 .portfolio-back {
-  background-color: #97D8C4;
-  color: #0A2463;
+  background-color: #97d8c4;
+  color: #0a2463;
   transform: rotateY(180deg);
   padding: 2em;
-}
-
-.portfolio-back h4 {
-  font-size: 1.3em;
-  margin-bottom: 1.2em;
-}
-
-/* ======== Palabras e interacciones ======== */
-.portfolio-palabras-clave {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-}
-
-.portfolio-palabra-wrapper {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.portfolio-palabra {
-  font-weight: bold;
-  color: #0A2463;
-  background: #F1E3F3;
-  padding: 0.6em 1.2em;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  z-index: 5;
-}
-
-.portfolio-palabra:hover {
-  background: #E48022;
-  color: #F1E3F3;
-  transform: scale(1.08);
-}
-
-/* ======== Imagen circular ======== */
-.portfolio-imagen-hover {
-  position: absolute;
-  top: 40%; /* desplazada ligeramente hacia arriba */
-  left: 60%; /* desplazada hacia la derecha */
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  overflow: hidden;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  transition: all 0.5s ease;
-  box-shadow: 0 8px 25px rgba(10, 36, 99, 0.4);
-  z-index: 10;
-}
-
-.portfolio-palabra-wrapper:hover .portfolio-imagen-hover {
-  transform: translate(-50%, -50%) scale(1.15);
-  opacity: 1;
-  transition: all 0.6s ease-in-out;
-  animation: pulso 2s ease-in-out infinite;
-}
-
-@keyframes pulso {
-  0%, 100% { transform: translate(-50%, -50%) scale(1.1); }
-  50% { transform: translate(-50%, -50%) scale(1.2); }
-}
-
-.portfolio-imagen-hover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+/* ======== NUEVO: botón “Ver trabajos” ======== */
+.portfolio-ver-trabajos {
   cursor: pointer;
-}
-
-.portfolio-palabra-wrapper:hover .portfolio-palabra {
-  filter: blur(2px);
-}
-
-/* ======== Modal ======== */
-.portfolio-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 36, 99, 0.25);       /* 🔸 color base más elegante */
-  backdrop-filter: blur(8px) brightness(0.9); /* 🔸 efecto difuminado + brillo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999 !important;
-  animation: fadeIn 0.4s ease forwards;
-}
-
-.portfolio-modal-content {
-  background-color: #f1e3f3;
   color: #0a2463;
-  border-radius: 20px;
-  padding: 2em;
-  height: auto;
-  max-width: 30vw;
+  font-weight: 700;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
   text-align: center;
-  box-shadow: 0 0 30px rgba(228, 128, 34, 0.5);
-  animation: zoomIn 0.5s ease forwards;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-  z-index: 10000;
 }
 
-/* Imagen dentro del modal: ahora ocupa el 75% de la pantalla (75vw) */
-.portfolio-modal-content img {
-  width: 75%;
-  max-width: 700px; /* tamaño máximo razonable */
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 1.5em;
-  object-fit: contain;
-  display: block;
-  animation: modalImageZoomIn 0.5s ease forwards;
+.portfolio-ver-trabajos:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 12px #e48022;
 }
 
-/* Texto descriptivo */
-.portfolio-modal-content p {
-  max-width: 80%;
-  font-size: 1.1em;
-  line-height: 1.4;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem; /* espacio extra antes del botón */
-}
-
-/* Botón cerrar */
-.portfolio-close-btn {
-  margin-top: auto;
-  margin-bottom: 1rem; /* separa del borde inferior */
-  padding: 0.6em 1.4em;
-  border: none;
-  border-radius: 10px;
-  background-color: #e48022;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.portfolio-close-btn:hover {
-  background-color: #c96c1c;
-}
-
-/* ======== Modal especial para imágenes grandes ======== */
-/* ======== Modal tipo galería (ajuste final) ======== */
-.portfolio-modal-content.modal-imagen-grande {
-  width: 65vw !important;              /* 🔸 más compacto */
-  max-width: 850px !important;         /* 🔸 tope razonable */
-  height: auto !important;
-  padding: 2em 2em 2.5em !important;   /* 🔸 margen equilibrado */
-  background-color: #f1e3f3 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 18px !important;
-  transition: all 0.3s ease !important;
-  animation: zoomInLarge 0.3s ease forwards !important;
-}
-
-/* Imagen protagonista */
-.portfolio-modal-content.modal-imagen-grande img {
-  width: 85% !important;               /* 🔸 imagen centrada con margen visual */
-  max-width: 780px !important;
-  height: auto !important;
-  border-radius: 12px !important;
-  object-fit: contain !important;
-  margin-bottom: 1.8rem !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  animation: modalImageZoomIn 0.5s ease forwards;
-}
-
-/* Sin texto descriptivo (galería pura) */
-.portfolio-modal-content.modal-imagen-grande p {
-  display: none !important;
-}
-
-/* Botón cerrar centrado y con espacio inferior */
-.portfolio-modal-content.modal-imagen-grande .portfolio-close-btn {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
-  align-self: center !important;
-  padding: 0.6em 1.6em !important;
-  border-radius: 12px !important;
-  background-color: #e48022 !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-  transition: background 0.3s ease !important;
-}
-
-.portfolio-modal-content.modal-imagen-grande .portfolio-close-btn:hover {
-  background-color: #c96c1c !important;
-}
-
-/* Animación suave */
-@keyframes zoomInLarge {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+/* ======== Animaciones existentes del modal original ======== */
+@keyframes pulso {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.1);
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 
 /* ======== Ajustes específicos para móviles ======== */
 @media (max-width: 768px) {
-  /* 🔹 El modal normal ocupa casi toda la pantalla */
-  .portfolio-modal-content {
-    width: 95vw;
-    height: 95vh;
-    max-width: none;
-    border-radius: 18px;
-    padding: 1.5em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* centra el contenido verticalmente */
-    align-items: center;      /* centra horizontalmente */
-    text-align: center;
+  .tarjeta-portfolio {
+    width: 90%;
+    height: 360px;
   }
 
-  /* 🔹 La imagen dentro del modal se amplía */
-  .portfolio-modal-content img {
-    width: 95%;
-    max-width: 95%;
-    height: auto;
-    border-radius: 12px;
-    margin-bottom: 1.2em;
+  .portfolio-front h3 {
+    font-size: 1.4em;
   }
 
-  /* 🔹 Texto centrado y con buen espaciado */
-  .portfolio-modal-content p {
-    max-width: 90%;
+  .portfolio-ver-trabajos {
     font-size: 1em;
-    line-height: 1.5;
-    margin: 0.8em 0 1.5em;
-    text-align: center;
-  }
-
-  /* 🔹 Botón de cierre centrado */
-  .portfolio-close-btn {
-    align-self: center;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    font-size: 1em;
-    padding: 0.8em 1.6em;
-  }
-
-  /* 🔹 Versión de modal con imagen grande (galería) */
-  .portfolio-modal-content.modal-imagen-grande {
-    width: 95vw !important;
-    height: auto !important;
-    max-width: none !important;
-    padding: 1.5em !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .portfolio-modal-content.modal-imagen-grande img {
-    width: 95% !important;
-    height: auto !important;
-    max-width: 95vw !important;
+    padding: 0.7em 1.4em;
   }
 }
