@@ -1,86 +1,81 @@
-/* ======== Base general ======== */
 .tarjeta-portfolio-container {
-  perspective: 1000px;
   display: inline-block;
   margin: 0.5em;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  cursor: pointer;
+  position: relative;
 }
 
+/* 🔹 Tarjeta con efecto 3D */
 .tarjeta-portfolio {
   width: 360px;
-  height: 400px;
+  height: 420px;
   position: relative;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.8s ease;
-  cursor: pointer;
+  will-change: transform;
 }
 
-.tarjeta-portfolio-container.activa .tarjeta-portfolio {
-  transform: rotateY(180deg);
-}
-
-/* Permite que gire automáticamente al pasar el ratón */
-.tarjeta-portfolio-container:hover .tarjeta-portfolio {
-  transform: rotateY(180deg);
-}
-
-/* ======== Lados ======== */
+/* 🔹 Caras */
 .portfolio-front,
 .portfolio-back {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  backface-visibility: hidden;
   box-shadow: 0 0 25px rgba(10, 36, 99, 0.3);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-/* ======== Frente ======== */
+/* 🔹 Frente */
 .portfolio-front {
   background-color: #0a2463;
   color: #f1e3f3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  text-align: center;
+  z-index: 2;
 }
 
 .portfolio-front h3 {
-  font-size: 1.8em;
+  font-size: 1.9em;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 0;
   text-align: center;
-  width: 80%;
-  word-wrap: break-word;
+  padding: 0 1em;
 }
 
-/* ======== Reverso ======== */
+/* 🔹 Reverso */
 .portfolio-back {
   background-color: #97d8c4;
   color: #0a2463;
   transform: rotateY(180deg);
-  padding: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 1;
+  padding: 2em 1.5em;
+  text-align: center;
 }
 
-/* ======== NUEVO: botón “Ver trabajos” ======== */
+.portfolio-back p {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
 .portfolio-ver-trabajos {
-  cursor: pointer;
+  margin-top: 1em;
   color: #0a2463;
   font-weight: 700;
-  font-size: 1.3em;
+  font-size: 1.1em;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
-  text-align: center;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .portfolio-ver-trabajos:hover {
@@ -88,29 +83,36 @@
   text-shadow: 0 0 12px #e48022;
 }
 
-/* ======== Animaciones existentes del modal original ======== */
-@keyframes pulso {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
+/* 🔹 Efecto de giro */
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-portfolio-container:hover .tarjeta-portfolio {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
 
-/* ======== Ajustes específicos para móviles ======== */
+/* 🔹 En móvil: solo al tocar (clase activa) */
+.tarjeta-portfolio-container.activa .tarjeta-portfolio {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+/* ======== Ajustes responsivos ======== */
 @media (max-width: 768px) {
   .tarjeta-portfolio {
     width: 90%;
-    height: 360px;
+    height: 380px;
   }
 
   .portfolio-front h3 {
-    font-size: 1.4em;
+    font-size: 1.6em;
+  }
+
+  .portfolio-back p {
+    font-size: 1.05em;
   }
 
   .portfolio-ver-trabajos {
     font-size: 1em;
-    padding: 0.7em 1.4em;
   }
 }

@@ -7,7 +7,7 @@ function TarjetaPortfolio({ titulo, palabras }) {
   const [activo, setActivo] = useState(false);
   const [modalAbierto, setModalAbierto] = useState(false);
 
-  const toggleCard = () => setActivo(!activo);
+  const handleToggle = () => setActivo(!activo);
 
   const abrirModal = (e) => {
     e.stopPropagation();
@@ -22,7 +22,7 @@ function TarjetaPortfolio({ titulo, palabras }) {
   return (
     <div
       className={`tarjeta-portfolio-container ${activo ? "activa" : ""}`}
-      onClick={toggleCard}
+      onClick={handleToggle}
     >
       <div className="tarjeta-portfolio">
         <div className="portfolio-front">
@@ -30,9 +30,10 @@ function TarjetaPortfolio({ titulo, palabras }) {
         </div>
 
         <div className="portfolio-back">
-          <h4 className="portfolio-ver-trabajos" onClick={abrirModal}>
+           <p>{palabras?.[0]?.descripcion || "Descripción del proyecto"}</p>
+          <div className="portfolio-ver-trabajos" onClick={abrirModal}>
             Ver trabajos
-          </h4>
+          </div>
         </div>
       </div>
 
